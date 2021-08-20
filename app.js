@@ -16,8 +16,28 @@ function productIncreaseDecrease(product,price,addOrSubstract){
     const priceTotal = document.getElementById(product + '-total')
     priceTotal.innerText = price * productCount.value;
 
+    const subTotal=document.getElementById('sub-total');
+    subTotal.innerText= calculateSubTotal();
+
+    const taxTotal=document.getElementById('tax-total');
+    taxTotal.innerText= (calculateSubTotal()*10)/100;
+
+    const totalAmount =document.getElementById('total-amount');
+    totalAmount.innerText = parseFloat(subTotal.innerText) + parseFloat(taxTotal.innerText); 
+    
+
+}
+function getInputValue(product){
+    const productCount=parseInt(document.getElementById(product+'-count').value);
+    return productCount;
 }
 
+function calculateSubTotal(){
+   const phoneTotal = getInputValue('phone')*1219;
+   const caseTotal = getInputValue('case')*59;
+   const SubTotal = phoneTotal + caseTotal;
+   return SubTotal;
+}
 
 document.getElementById('phone-plus').addEventListener('click',function(){
 //    const phoneCount=document.getElementById('phone-count');
